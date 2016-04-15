@@ -15,7 +15,7 @@ class Entity {
         get() = dx != 0F || dy != 0F
     var fitness: Float = -1F
     val chromosome: MutableList<MotionInputEnum> = mutableListOf()
-    val position: Vec4f = Vec4f(20F, 20F, 50F, 50F)
+    val position: Vec4f = Vec4f((500 / 2) - 25F, (500 / 2) - 25F, 50F, 50F)
     var dx: Float = 0F
     var dy: Float = 0F
     constructor(randChro: Boolean) {

@@ -19,16 +19,13 @@ fun cross(parents: Pair<Entity, Entity>): Pair<Entity, Entity> {
         var childAParent = parents.second
         // mutation kek
 
-        /*
-        if (rand.nextInt(5000) == 25)
+        if (rand.nextInt(600) == 1)
             if (rand.nextBoolean()) {
-                println("mutated child a")
                 mutate(children.first)
             } else {
-                println("mutated child b")
                 mutate(children.second)
             }
-        */
+
 
       //  println("DBG: ${parents.first.chromosome.size}")
       //  println("DBG: ${parents.second.chromosome.size}\n")
@@ -72,13 +69,18 @@ fun cross(parents: Pair<Entity, Entity>): Pair<Entity, Entity> {
     return children
 }
 
-fun calcFitness(ent: Entity, box: Vec4f): Float {
-    val distX = Math.abs(box.x - ent.position.x)
-    val distY = Math.abs(box.y - ent.position.y)
+
+fun calcFitness(position: Vec4f, box: Vec4f): Float {
+    val distX = Math.abs(box.x - position.x)
+    val distY = Math.abs(box.y - position.y)
     return 1 / (distX + distY)
 }
 
+fun calcFitness(ent: Entity, box: Vec4f): Float = calcFitness(ent.position, box)
+
 fun mutate(entity: Entity) {
-    entity.chromosome.reverse()
+    val rand: Random = Random()
+    for(i in 0..rand.nextInt(3))
+        Collections.shuffle(entity.chromosome, rand)
 }
 
